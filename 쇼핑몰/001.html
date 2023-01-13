@@ -13,19 +13,13 @@
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script type="text/babel">
         const root = document.getElementById('root')
-        // const getProduct = async () => {
-        //     const response = await fetch('http://test.api.weniv.co.kr/mall')
-        //     const product = await response.json()
-        //     return product
-        // }
-        // const products = getProduct()
-
-        async function getProduct() {
+        const getProduct = async () => {
             const response = await fetch('http://test.api.weniv.co.kr/mall')
             const product = await response.json()
             return product
         }
 
+        const products = getProduct()
 
         const Header = ({title}) => {
             return <p>{title}</p>
@@ -52,7 +46,7 @@
         }
 
         const Product = (props) => {
-            console.log('product ', props.item[0])
+            console.log('product ', props.item)
             return (
                 <div>
                     <Card goods={item[0]}/>
@@ -74,7 +68,7 @@
                 <Header title='쇼핑몰'/>
                 <Main />
                 <Card />
-                <Product item={getProduct()}/>
+                <Product item={products}/>
                 <Footer />
             </div>
         )
