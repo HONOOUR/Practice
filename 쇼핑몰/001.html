@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script> 
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+        const root = document.getElementById('root')
+        // const getProduct = async () => {
+        //     const response = await fetch('http://test.api.weniv.co.kr/mall')
+        //     const product = await response.json()
+        //     return product
+        // }
+        // const products = getProduct()
+
+        async function getProduct() {
+            const response = await fetch('http://test.api.weniv.co.kr/mall')
+            const product = await response.json()
+            return product
+        }
+
+
+        const Header = ({title}) => {
+            return <p>{title}</p>
+        }
+        const Main = () => {
+            return <p>Welcome to our shop</p>
+        }
+        const Card = (props) => {
+            // console.log(props)
+
+            // const url = 'http://test.api.weniv.co.kr/' + goods.thumbnailImg
+            // return (
+            //     <li class="product-item">
+            //         <div class="product-img">
+            //             <img src={url} />
+            //         </div>
+            //         <strong class="product-name sl-ellipsis">{goods.productName}</strong>
+            //         <button class="like-btn"></button>
+            //         <div class="product-price">
+            //             <strong class="price m-price">{goods.price}<span>원</span></strong>
+            //         </div>
+            //     </li>
+            // )
+        }
+
+        const Product = (props) => {
+            console.log('product ', props.item[0])
+            return (
+                <div>
+                    <Card goods={item[0]}/>
+                    <Card goods={item[1]}/>
+                    <Card goods={item[2]}/>
+                    <Card goods={item[3]}/>
+                    <Card goods={item[4]}/>
+                    <Card goods={item[5]}/>
+                    <Card goods={item[6]}/>
+                </div>
+            )
+        }
+        const Footer = (props) => {
+            return <p>test</p>
+        }
+        const body = (
+            
+            <div>
+                <Header title='쇼핑몰'/>
+                <Main />
+                <Card />
+                <Product item={getProduct()}/>
+                <Footer />
+            </div>
+        )
+        
+        const domContainer = document.querySelector('#root');
+        ReactDOM.render(body, domContainer);
+    </script>
+</body>
+</html>

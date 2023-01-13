@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+</head>
+
+<div id="root"></div>
+
+<body>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"
+        integrity="sha512-kp7YHLxuJDJcOzStgd6vtpxr4ZU9kjn77e6dBsivSz+pUuAuMlE2UTdKB7jjsWT84qbS8kdCWHPETnP/ctrFsA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+        function Header({ name, age }) {
+            console.log(name)
+            return (
+                <div>
+                    <div>name: {name} age: {age}</div>
+                    <h1>header</h1>
+                    <div>menu</div>
+                </div>
+            )
+        }
+        function Main(menuOne, menuTwo) {
+            return (
+            <div>
+                <h1>main</h1>
+                <h3>hello world {menuOne}</h3>
+                <p>hello world {menuTwo}</p>
+            </div>
+        )}
+        const product = (
+            <div>
+                <h1>product</h1>
+                <div>bestseller</div>
+            </div>
+        )
+        const footer = <div>footer</div>
+
+        function Test (props) {
+            console.log(props)
+            return null
+        }
+        
+        const body = (
+            <div>
+                <Header name='Gegi' age='12'/>
+                {Main('m1', 'm2')}
+                {product}
+                {footer}
+                <Test>
+                    hello
+                    <Main/>
+                </Test>
+            </div>
+                
+        )
+        const domContainer = document.querySelector('#root');
+        ReactDOM.render(body, domContainer);
+        console.dir(ReactDom);
+    </script>
+</body>
+</html>
