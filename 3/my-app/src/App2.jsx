@@ -1,0 +1,57 @@
+import styled from "styled-components";
+
+const CardDiv = styled.div`
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #c4c4c4;
+  margin-bottom: 20px;
+  width: ${(props) => (props.className === "setting" ? "200px" : "400px")};
+`;
+
+const Card = (props) => {
+  console.log(props)
+  return (
+    <CardDiv className={props.className}>
+      <h3>{props.value}</h3>
+      {props.children}
+      <hr/>
+    </CardDiv>
+  )
+}
+
+const SettingCard = (props) => {
+  return (
+    <>
+      <button>초기화</button>
+      <button>저장</button>
+    </>
+  )
+}
+
+const ShareCard = (props) => {
+  return (
+    <>
+      <p>
+        sadffsdfsadfasdfasdfasdfasdf
+        asdfasdfasdfasdfasdfsdf
+        sdafasdfasdfasdf
+      </p>
+    </>
+  )
+}
+
+function App() {
+  return (
+    <>
+      <Card className="setting" value="챌린지 설정">
+        <SettingCard></SettingCard>
+        <div>children2</div>
+      </Card>
+      <Card className="share" value="서비스 공유하기">
+        <ShareCard></ShareCard>
+      </Card>
+    </>
+  );
+}
+
+export default App;
