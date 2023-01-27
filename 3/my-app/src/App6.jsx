@@ -1,6 +1,5 @@
-// useContext
-import { createContext, useContext } from "react";
-import InputComponent from "./components/InputComponent";
+// context API
+import { createContext } from "react";
 
 const UserInfo = createContext({ name: "gray", id: "grayIsFree" })
 
@@ -14,13 +13,16 @@ const App = () => {
 
 const HelloLicat = (props) => {
   console.log(props)
-  const {name, id} = useContext(UserInfo)
-  return  (
-    <>
-      <h2>{id}</h2>
-      <strong>{name}</strong>
-      <InputComponent/>
-    </>
-  )};
+  return (
+    <UserInfo.Consumer>
+      {(value) => (
+        <>
+          <h2>{value.id}</h2>
+          <strong>{value.name}</strong>
+        </>
+      )}
+    </UserInfo.Consumer>
+  );
+};
 
 export default App;

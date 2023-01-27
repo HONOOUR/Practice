@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 let user = {
     login: false,
     id: 'abc@g.com',
@@ -6,19 +6,27 @@ let user = {
 }
 
 export const Login = (e) => {
+    const idInput = useRef(null);
+    const passwordInput = useRef(null);
     const [id, setId] = useState("");
     const [password, setPassword] = useState("");
-    
 
     const handleLoginSubmit = (e) => {
         e.preventDefault();
-        console.log("submit");
-        if (id === '') {
+        if (idInput.current.value === "") {
             alert('아이디를 입력하지 않았습니다.')
+            idInput.current.focus();
         }
-        if (password === '') {
+        if (passwordInput.current.value === "") {
             alert('패스워드를 입력하지 않았습니다.')
+            passwordInput.current.focus();
         }
+        console.log(idInput)
+        console.log(passwordInput)
+
+        setId(idInput.current.value)
+        setPassword(passwordInput.current.value)
+        
         user['login'] = true
         console.log(user)
     }
@@ -34,8 +42,8 @@ export const Login = (e) => {
 
     return (
         <form>
-            <label>아이디: <input type="text" onChange={handleLoginInput}/></label>
-            <label>비밀번호: <input type="password" onChange={handlePasswordInput}/></label>
+            <label>아이디: <input type="text" ref={idInput}/></label>
+            <label>비밀번호: <input type="password" ref={passwordInput}/></label>
             <button type="submit" onClick={handleLoginSubmit}>로그인</button>
         </form>
     )
